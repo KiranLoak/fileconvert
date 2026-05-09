@@ -37,23 +37,17 @@ RUN npm run build --prefix client
 FROM node:20-bookworm-slim AS runner
 
 # Install system tools
-# We pin to specific apt packages and clean up afterward to keep image lean
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    # LibreOffice for PDF → Word
     libreoffice \
-    # Ghostscript for PDF compression
     ghostscript \
-    # GraphicsMagick for PDF → JPG (pdf2pic dependency)
     graphicsmagick \
-    # Poppler for pdfinfo (page counting)
     poppler-utils \
-    # Fonts — improves LibreOffice output quality
     fonts-liberation \
     fonts-dejavu-core \
-    # Clean up apt lists to reduce image size
+    fonts-noto \
+    xvfb \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /tmp/* /var/tmp/*
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -71,18 +65,18 @@ RUN mkdir -p server/uploads server/outputs server/logs && \
     chmod 755 server/uploads server/outputs server/logs
 
 # Create a non-root user for security
-RUN groupadd --gid 1001 nodeuser && \
-    useradd --uid 1001 --gid nodeuser --shell /bin/bash --create-home nodeuser && \
-    chown -R nodeuser:nodeuser /app
+RUN groupadd --gid 1001 appuser && \
+    useradd --uid 1001 --gid appuser --shell /bin/bash --create-home appuser && \
+    chown -R appuser:appuser /app && \
+    chmod 1777 /tmp
 
-USER nodeuser
+ENV HOME=/home/appuser
 
-# Expose the port Express listens on
+USER appuser
+
 EXPOSE 5000
 
-# Health check — Railway/Render will restart the container if this fails
-HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=15s --start-period=90s --retries=3 \
   CMD node -e "require('http').get('http://localhost:5000/api/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"
 
-# Start the Express server
 CMD ["node", "server/server.js"]
