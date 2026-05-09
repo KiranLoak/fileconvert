@@ -1,0 +1,18 @@
+# railway.toml — Railway deployment configuration
+# Docs: https://docs.railway.app/reference/config-as-code
+
+[build]
+# Use the Dockerfile at the repo root
+dockerfilePath = "Dockerfile"
+
+[deploy]
+# Health check endpoint — Railway will wait for this before routing traffic
+healthcheckPath    = "/api/health"
+healthcheckTimeout = 120        # LibreOffice takes time to init on first request
+
+# Restart policy: restart on crash, up to 5 times
+restartPolicyType       = "ON_FAILURE"
+restartPolicyMaxRetries = 5
+
+[[services]]
+name = "fileconvert"

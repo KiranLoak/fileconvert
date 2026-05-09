@@ -1,0 +1,161 @@
+.tool-page__panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.tool-page__upload-area {
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* Busy / Progress state */
+.tool-page__progress {
+  padding: var(--space-12) var(--space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+  text-align: center;
+}
+
+.tool-page__progress-icon {
+  /* subtle pulsing ring */
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-subtle);
+  border-radius: 50%;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+.tool-page__progress-bars {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.tool-page__progress-note {
+  font-size: 12px;
+  color: var(--text-tertiary) !important;
+}
+
+/* Tips */
+.tool-tips {
+  margin-top: var(--space-6);
+  padding: var(--space-5) var(--space-6);
+  background: var(--bg-subtle);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+.tool-tips__heading {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-3);
+}
+
+.tool-tips__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.tool-tips__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.tool-tips__dot {
+  width: 5px;
+  height: 5px;
+  background: var(--border-strong);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+/* Page badge override with accent color */
+.page-hero__badge {
+  color: var(--badge-color, var(--accent));
+  background: color-mix(in srgb, var(--badge-color, var(--accent)) 12%, transparent);
+}
+
+/* Options row (shared across tool pages) */
+.tool-options {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.tool-option-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+  min-width: 140px;
+}
+
+.tool-option-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.tool-option-group select {
+  padding: 8px 10px;
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 30px;
+}
+
+.tool-option-group select:hover,
+.tool-option-group select:focus { border-color: var(--border-focus); outline: none; }
+
+/* Convert action bar */
+.tool-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  padding-top: var(--space-2);
+}
+
+.tool-action__info {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 480px) {
+  .tool-page__upload-area { padding: var(--space-5); }
+  .tool-action { flex-direction: column; align-items: stretch; }
+  .tool-action .btn { width: 100%; justify-content: center; }
+}

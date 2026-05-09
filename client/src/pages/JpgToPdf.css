@@ -1,0 +1,28 @@
+.jpg-pdf__files {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.jpg-pdf__files-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.jpg-pdf__files-count {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.jpg-pdf__files-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-height: 320px;
+  overflow-y: auto;
+  padding-right: var(--space-1);
+}

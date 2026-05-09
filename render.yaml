@@ -1,0 +1,31 @@
+# render.yaml — Render deployment configuration
+# Docs: https://render.com/docs/render-yaml-spec
+
+services:
+  - type: web
+    name: fileconvert
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+
+    # Health check — Render routes traffic only after this passes
+    healthCheckPath: /api/health
+
+    # Auto-deploy on every push to main
+    autoDeploy: true
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000           # Render's default internal port for web services
+      - key: MAX_FILE_SIZE_MB
+        value: 50
+      - key: FILE_EXPIRY_MINUTES
+        value: 30
+      - key: RATE_LIMIT_WINDOW_MS
+        value: 900000
+      - key: RATE_LIMIT_MAX_REQUESTS
+        value: 100
+      # BASE_URL is set automatically below — don't hardcode it here
+      # Set it manually in Render dashboard to: https://your-service-name.onrender.com

@@ -1,0 +1,37 @@
+# Git
+.git
+.gitignore
+
+# Node modules (reinstalled inside Docker)
+node_modules
+server/node_modules
+client/node_modules
+
+# Dev build artifacts
+client/dist
+
+# Local env files (injected via platform env vars in production)
+.env
+server/.env
+client/.env
+
+# Logs and temp files
+*.log
+server/logs
+server/uploads/*
+server/outputs/*
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea
+.vscode
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Docs
+README*.md
+DEPLOYMENT.md

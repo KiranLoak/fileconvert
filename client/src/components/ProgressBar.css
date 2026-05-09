@@ -1,0 +1,73 @@
+.progress-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.progress-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.progress-pct {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-track {
+  width: 100%;
+  height: 6px;
+  background: var(--bg-muted);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  transition: width 0.35s var(--ease-decelerate);
+  will-change: width;
+}
+
+/* Indeterminate animation */
+.progress-track.is-indeterminate .progress-fill {
+  width: 35%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: progressIndeterminate 1.4s var(--ease-standard) infinite;
+}
+
+/* Variant colors */
+.progress-wrap--processing .progress-fill {
+  background: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.progress-wrap--success .progress-fill {
+  background: var(--success);
+  width: 100% !important;
+  transition: width 0.5s var(--ease-decelerate);
+}
+
+.progress-wrap--error .progress-fill {
+  background: var(--error);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.7; }
+}

@@ -1,0 +1,68 @@
+.file-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast);
+}
+.file-card:hover { border-color: var(--border-strong); }
+
+.file-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.file-card__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.file-card__name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary) !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+}
+
+.file-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: 3px;
+  line-height: 1;
+}
+
+.file-card__size {
+  font-size: 11px;
+  color: var(--text-tertiary) !important;
+}
+
+.file-card__remove {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.file-card__remove:hover {
+  background: var(--error-subtle);
+  color: var(--error);
+}
